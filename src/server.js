@@ -11,7 +11,17 @@ export const setupServer = () => {
   const app = express();
 
   app.use(express.json());
-  app.use(cors());
+
+  const origins = [
+    'http://localhost:5173',
+    'https://backend-for-it-traveler.onrender.com',
+  ];
+  app.use(
+    cors({
+      origin: origins,
+      credentials: true,
+    }),
+  );
   app.use(cookieParser());
 
   app.use(
