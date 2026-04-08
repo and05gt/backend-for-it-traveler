@@ -42,7 +42,7 @@ export const logoutUserController = async (req, res) => {
     await logoutUser(req.cookies.sessionId);
   }
 
-  res.clearCookie('SessionId');
+  res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
 
   res.status(204).send();
