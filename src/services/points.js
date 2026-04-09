@@ -14,7 +14,7 @@ export const getPoints = async ({ page, perPage }) => {
 
   const paginationData = calculatePaginationData(pointsCount, perPage, page);
   return {
-    data: points,
+    items: points,
     ...paginationData,
   };
 };
