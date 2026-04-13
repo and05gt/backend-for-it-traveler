@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { loginUserSchema, registerUserSchema } from '../validation/auth.js';
 import {
+  getUserInfoController,
   loginUserController,
   logoutUserController,
   refreshUserSessionController,
@@ -26,5 +27,7 @@ router.post(
 router.post('/logout', ctrlWrapper(logoutUserController));
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionController));
+
+router.get('/me', ctrlWrapper(getUserInfoController));
 
 export default router;

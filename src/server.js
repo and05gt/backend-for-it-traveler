@@ -14,7 +14,10 @@ export const setupServer = () => {
 
   app.use(express.json());
 
+  app.use(cookieParser());
+
   const origins = [
+    'http://localhost:3000',
     'http://localhost:5173',
     'https://backend-for-it-traveler.onrender.com',
   ];
@@ -24,7 +27,6 @@ export const setupServer = () => {
       credentials: true,
     }),
   );
-  app.use(cookieParser());
 
   app.use(
     pino({

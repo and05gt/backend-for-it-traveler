@@ -1,5 +1,6 @@
 import { ONE_DAY } from '../constants/index.js';
 import {
+  getUserInfo,
   loginUser,
   logoutUser,
   refreshUserSession,
@@ -11,7 +12,7 @@ export const registerUserController = async (req, res) => {
 
   res.status(201).json({
     status: 201,
-    message: 'Successfully registered a user!',
+    message: 'Successfully registered an user!',
     data: user,
   });
 };
@@ -26,6 +27,8 @@ export const loginUserController = async (req, res) => {
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
 
   res.json({
@@ -56,6 +59,8 @@ const setupSession = (res, session) => {
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
 };
 
@@ -73,5 +78,15 @@ export const refreshUserSessionController = async (req, res) => {
     data: {
       accessToken: session.accessToken,
     },
+  });
+};
+
+export const getUserInfoController = async (req, res) => {
+  const user = await getUserInfo(req.cookies.sessionId);
+
+  res.json({
+    status: 200,
+    message: 'Successfully founded an user!',
+    data: user,
   });
 };
