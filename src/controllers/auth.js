@@ -1,6 +1,5 @@
 import { ONE_DAY } from '../constants/index.js';
 import {
-  getUserInfo,
   loginUser,
   logoutUser,
   refreshUserSession,
@@ -81,8 +80,8 @@ export const refreshUserSessionController = async (req, res) => {
   });
 };
 
-export const getUserInfoController = async (req, res) => {
-  const user = await getUserInfo(req.cookies.sessionId);
+export const getUserInfoController = (req, res) => {
+  const user = req.user;
 
   res.json({
     status: 200,

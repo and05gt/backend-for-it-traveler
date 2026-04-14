@@ -86,19 +86,3 @@ export const refreshUserSession = async ({ sessionId, refreshToken }) => {
     ...newSession,
   });
 };
-
-export const getUserInfo = async (sessionId) => {
-  const session = await SessionsCollection.findOne({ _id: sessionId });
-
-  if (!session) {
-    throw createHttpError(401, 'Session not found');
-  }
-
-  const user = await UsersCollection.findOne({ _id: session.userId });
-
-  if (!user) {
-    throw createHttpError(404, 'User not found');
-  }
-
-  return user;
-};

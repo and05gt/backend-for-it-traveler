@@ -9,6 +9,7 @@ import {
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 
@@ -28,6 +29,6 @@ router.post('/logout', ctrlWrapper(logoutUserController));
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
-router.get('/me', ctrlWrapper(getUserInfoController));
+router.get('/me', authenticate, ctrlWrapper(getUserInfoController));
 
 export default router;
