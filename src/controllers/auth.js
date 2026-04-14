@@ -26,8 +26,6 @@ export const loginUserController = async (req, res) => {
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + ONE_DAY),
-    sameSite: 'none',
-    secure: true,
   });
 
   res.json({
@@ -58,8 +56,6 @@ const setupSession = (res, session) => {
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + ONE_DAY),
-    sameSite: 'none',
-    secure: true,
   });
 };
 
